@@ -38,6 +38,7 @@ app.use(function(req, res) {
 			if(err){
 				console.log(err);
 			}else{
+				res.setHeader("Content-Type", "text/html");
 				res.end(html);
 			}
 		});

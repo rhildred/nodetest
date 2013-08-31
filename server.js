@@ -3,8 +3,8 @@ var fs = require('fs');
 var mime = require('mime');
 var engine = require('ejs-locals');
 
-var ipaddr = process.env.OPENSHIFT_INTERNAL_IP || "127.0.0.1";
-var port = process.env.OPENSHIFT_INTERNAL_PORT || parseInt(process.argv.pop());
+var ipaddr = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
+var port = process.env.OPENSHIFT_NODEJS_PORT || parseInt(process.argv.pop());
 
 var app = express();
 app.configure(function() {

@@ -1,3 +1,1 @@
-The OpenShift `nodejs` cartridge documentation can be found at:
-
-https://github.com/openshift/origin-server/tree/master/cartridges/openshift-origin-cartridge-nodejs/README.md
+This is a ejs and express based server. It serves static content and also renders js.html pages using ejs. Ejs includes and layouts are supported per examples.

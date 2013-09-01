@@ -25,7 +25,8 @@
   },
 
   "dependencies": {
-    "express": "*"
+    "express": "*",
+    "ejs-locals": "*"
   },
   "devDependencies": {},
   "bundleDependencies": [],

@@ -1,7 +1,6 @@
 var express = require('express');
 var ejs = require('ejs-locals');
 var fs = require('fs');
-var path = require('path');
 
 var ipaddr = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
 var port = process.env.OPENSHIFT_NODEJS_PORT || parseInt(process.argv.pop());
@@ -21,8 +20,8 @@ app.use(function(req, res) {
 	} else {
 		sUrl = "views" + req._parsedUrl.pathname;
 	}
-	if (path.normalize(sUrl).search("views") == -1) {
-		// we don't seem to be able to get a path below views
+	if (sUrl.search("/_") != -1) {
+		// we don't want to serve files with a leading _
 		res.send(403, 'Unauthorized.');
 	} else if (fs.existsSync(sUrl)) {
 		// serve file

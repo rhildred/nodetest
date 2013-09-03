@@ -1,6 +1,7 @@
 var express = require('express');
 var ejs = require('ejs-locals');
 var fs = require('fs');
+var url=require('url');
 
 var ipaddr = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
 var port = process.env.OPENSHIFT_NODEJS_PORT || parseInt(process.argv.pop());
@@ -12,16 +13,30 @@ app.configure(function() {
 });
 
 app.use(function(req, res) {
-	var sUrl = "views/index.js.html";
-	if (req._parsedUrl.pathname == "/") {
-		if (!fs.existsSync(sUrl)) {
-			sUrl = "views/index.html";
+	var sOriginal = req.url;
+	var sUrl = "public" + req._parsedUrl.pathname;
+	if(fs.existsSync(sUrl) && fs.statSync(sUrl).isDirectory())
+	{
+		if(sUrl.charAt(sUrl.length-1) != "/" )
+		{
+			// need to do redirect
+			res.writeHead(302, {
+				  'Location': req._parsedUrl.pathname + "/"
+				  //add other headers here...
+				});
+			res.end();
+			return;
 		}
-	} else {
-		sUrl = "views" + req._parsedUrl.pathname;
+		if (fs.existsSync(sUrl + "index.js.html")) {
+			sUrl += "index.js.html";
+		}
+		else
+		{
+			sUrl += "index.html";
+		}
 	}
 	if (sUrl.search("/_") != -1) {
-		// we don't seem to be able to get a path below views
+		// don't serve things that start with an undersore
 		res.send(403, 'Unauthorized.');
 	} else if (fs.existsSync(sUrl)) {
 		// serve file

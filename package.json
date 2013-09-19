@@ -1,29 +1,35 @@
 {
-  "author": "Tom Carden <tom@tom-carden.co.uk>",
-  "contributors": [
-    "Robert Sköld <robert@publicclass.se> (http://publicclass.se)"
+  "name": "OpenShift-Sample-App",
+  "version": "1.0.0",
+  "description": "OpenShift Sample Application",
+  "keywords": [
+    "OpenShift",
+    "Node.js",
+    "application",
+    "openshift"
   ],
-  "name": "ejs-locals",
-  "description": "Express 3.x locals for layout, partial and blocks.",
-  "version": "1.0.2",
+  "author": {
+    "name": "OpenShift",
+    "email": "ramr@example.org",
+    "url":  "http://openshift.redhat.com/"
+  },
+  "homepage": "http://openshift.redhat.com/",
   "repository": {
     "type": "git",
-    "url": "git://github.com/randometc/ejs-locals.git"
+    "url": "https://gitub.com/openshift/crankcase"
   },
-  "homepage": "https://github.com/randometc/ejs-locals",
+
   "engines": {
-    "node": ">=0.6.0"
+    "node": ">= 0.6.0",
+    "npm": ">= 1.0.0"
   },
+
   "dependencies": {
-    "ejs": "0.8.x"
+    "express": "*",
   },
-  "devDependencies": {
-    "express": "~3.0.0",
-    "mocha": "*",
-    "should": "*",
-    "methods": "0.0.1"
-  },
-  "scripts": {
-    "test": "mocha -r should -R spec"
-  }
+  "devDependencies": {},
+  "bundleDependencies": [],
+
+  "private": true,
+  "main": "server.js"
 }

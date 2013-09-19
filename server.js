@@ -1,6 +1,5 @@
 var express = require('express');
-require('./lib/ejs');
-var ejs = require('ejs-locals');
+var ejs = require('./lib/ejs-locals');
 var fs = require('fs');
 var url=require('url');
 

@@ -1,4 +1,6 @@
 var express = require('express');
+require('lib/ejs/src/ejs.js');
+require('lib/ejs/src/view.js');
 var ejs = require('ejs-locals');
 var fs = require('fs');
 var url=require('url');

@@ -1,16 +1,36 @@
 {
-  "name": "ejs",
-  "description": "Embedded JavaScript templates",
-  "version": "0.8.4",
-  "author": "TJ Holowaychuk <tj@vision-media.ca>",
-  "keywords": ["template", "engine", "ejs"],
-  "devDependencies": {
-    "mocha": "*",
-    "should": "*"
+  "name": "OpenShift-Sample-App",
+  "version": "1.0.0",
+  "description": "OpenShift Sample Application",
+  "keywords": [
+    "OpenShift",
+    "Node.js",
+    "application",
+    "openshift"
+  ],
+  "author": {
+    "name": "OpenShift",
+    "email": "ramr@example.org",
+    "url":  "http://openshift.redhat.com/"
   },
-  "main": "./lib/ejs.js",
-  "repository": "git://github.com/visionmedia/ejs.git",
-  "scripts": {
-    "test": "mocha --require should --reporter spec"
-  }
+  "homepage": "http://openshift.redhat.com/",
+  "repository": {
+    "type": "git",
+    "url": "https://gitub.com/openshift/crankcase"
+  },
+
+  "engines": {
+    "node": ">= 0.6.0",
+    "npm": ">= 1.0.0"
+  },
+
+  "dependencies": {
+    "express": "*",
+    "ejs-locals": "*"
+  },
+  "devDependencies": {},
+  "bundleDependencies": [],
+
+  "private": true,
+  "main": "server.js"
 }

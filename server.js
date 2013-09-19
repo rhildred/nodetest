@@ -1,12 +1,11 @@
 var express = require('express');
-require('lib/ejs/src/ejs.js');
-require('lib/ejs/src/view.js');
+require('./lib/ejs');
 var ejs = require('ejs-locals');
 var fs = require('fs');
 var url=require('url');
 
 var ipaddr = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
-var port = process.env.OPENSHIFT_NODEJS_PORT || parseInt(process.argv.pop());
+var port = process.env.OPENSHIFT_NODEJS_PORT || parseInt(process.argv.pop()) || 8080;
 
 var app = express();
 app.configure(function() {

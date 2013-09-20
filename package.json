@@ -26,6 +26,7 @@
 
   "dependencies": {
     "express": "*",
+    "marked": "*"
   },
   "devDependencies": {},
   "bundleDependencies": [],

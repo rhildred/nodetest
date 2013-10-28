@@ -11,8 +11,10 @@ var app = express();
 app.configure(function() {
 	app.use(express.bodyParser());
 	app.use(app.router);
+	var aSupported = fs.readdirSync("i18n");
+	aSupported.push("en-US");
 	app.use(i18n.abide({
-		  supported_languages: ['en-US', 'fr'],
+		  supported_languages: aSupported,
 		  default_lang: 'en-US',
 		  translation_directory: 'i18n',
 		  translation_type: 'key-value-json'
@@ -53,6 +55,15 @@ app.use(function(req, res) {
 			res.sendfile(sUrl);
 		} else {
 			// then we want to parse this file as js.html with ejs
+			var slang_dir = "ltr";
+			try
+			{
+				slang_dir = req.gettext("ltr");
+			}
+			catch(e)
+			{
+				//ignore this exception since we already set lang_dir
+			}
 			var options = {
 				settings : {
 					'view engine' : 'js.html'
@@ -64,7 +75,8 @@ app.use(function(req, res) {
 				},
 				gettext : req.gettext,
 				lang : req.lang,
-				lang_dir : req.lang_dir
+				lang_dir : slang_dir,
+				"__" : req.gettext
 			};
 			ejs(sUrl, options, function(err, html) {
 				if (err) {

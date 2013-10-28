@@ -26,7 +26,8 @@
 
   "dependencies": {
     "express": "*",
-    "marked": "*"
+    "marked": "*",
+    "i18n-abide": "*"
   },
   "devDependencies": {},
   "bundleDependencies": [],

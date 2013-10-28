@@ -2,6 +2,7 @@ var express = require('express');
 var ejs = require('./lib/ejs-locals');
 var fs = require('fs');
 var url=require('url');
+var i18n = require('i18n-abide');
 
 var ipaddr = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
 var port = process.env.OPENSHIFT_NODEJS_PORT || parseInt(process.argv.pop()) || 8080;
@@ -10,10 +11,17 @@ var app = express();
 app.configure(function() {
 	app.use(express.bodyParser());
 	app.use(app.router);
+	app.use(i18n.abide({
+		  supported_languages: ['en-US', 'fr'],
+		  default_lang: 'en-US',
+		  translation_directory: 'i18n',
+		  translation_type: 'key-value-json'
+		}));
 });
 
+
+
 app.use(function(req, res) {
-	var sOriginal = req.url;
 	var sUrl = "public" + req._parsedUrl.pathname;
 	if(fs.existsSync(sUrl) && fs.statSync(sUrl).isDirectory())
 	{
@@ -48,7 +56,15 @@ app.use(function(req, res) {
 			var options = {
 				settings : {
 					'view engine' : 'js.html'
-				}
+				},
+				locals : {
+					'page' : sUrl.replace(/.*\//, '')
+							.replace('.js.html', ''),
+					'q' : 'Search'
+				},
+				gettext : req.gettext,
+				lang : req.lang,
+				lang_dir : req.lang_dir
 			};
 			ejs(sUrl, options, function(err, html) {
 				if (err) {

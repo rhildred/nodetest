@@ -11,14 +11,18 @@ var app = express();
 app.configure(function() {
 	app.use(express.bodyParser());
 	app.use(app.router);
-	var aSupported = fs.readdirSync("i18n");
-	aSupported.push("en-US");
-	app.use(i18n.abide({
+	try{
+		var aSupported = fs.readdirSync("i18n");
+		aSupported.push("en-US");
+		app.use(i18n.abide({
 		  supported_languages: aSupported,
 		  default_lang: 'en-US',
 		  translation_directory: 'i18n',
 		  translation_type: 'key-value-json'
 		}));
+	}catch(e){
+		console.log("no i18n support " + e.toString());
+	}
 });
 
 

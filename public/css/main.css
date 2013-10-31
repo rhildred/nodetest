@@ -24,7 +24,7 @@
 	float: right;
 }
 
-html body {
+body, #content {
 	padding-top: 3em;
 }
 

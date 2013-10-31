@@ -3,9 +3,11 @@
 <head>
 <meta charset="utf8" />
 <title><$BlogPageTitle$></title>
-<$BlogMetaData$>
-<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet" />
-<link href="//ben-hildred.rhcloud.com/css/lavish-bootstrap.css" rel="stylesheet" />
+<link
+	href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css"
+	rel="stylesheet" />
+<link href="//ben-hildred.rhcloud.com/css/lavish-bootstrap.css"
+	rel="stylesheet" />
 <link href="//ben-hildred.rhcloud.com/css/main.css" rel="stylesheet" />
 </head>
 
@@ -18,16 +20,21 @@
 					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="//ben-hildred.rhcloud.com/"><i class="fa fa-home" ></i>&nbsp;&nbsp;Ben Hildred
-				</a>
+				<a class="navbar-brand" href="//ben-hildred.rhcloud.com"><i
+					class="fa fa-home"></i>&nbsp;&nbsp;Ben Hildred </a>
 			</div>
 			<div class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li><a href="//ben-hildred.rhcloud.com/workout.js.html">workout&nbsp;<i class="fa fa-heart" ></i></a></li>
-					<li><a href="#" class="active">recipes&nbsp;<i class="fa fa-cutlery" ></i></a></li>
-					<li><a href="//ben-hildred.rhcloud.com/beats.js.html">beats&nbsp;<i class="fa fa-headphones" ></i></a></li>
-					<li><a href="//ben-hildred.rhcloud.com/swag.js.html">swag&nbsp;<i class="fa fa-shopping-cart" ></i></a></li>
-					<li><a href="//ben-hildred.rhcloud.com/dates.js.html">dates&nbsp;<i class="fa fa-calendar" ></i></a></li>
+					<li><a href="//ben-hildred.rhcloud.com/workout.js.html">workout&nbsp;<i
+							class="fa fa-heart"></i></a></li>
+					<li><a href="//ben-hildred.rhcloud.com/" class="active">recipes&nbsp;<i
+							class="fa fa-cutlery"></i></a></li>
+					<li><a href="//ben-hildred.rhcloud.com/beats.js.html">beats&nbsp;<i
+							class="fa fa-headphones"></i></a></li>
+					<li><a href="//ben-hildred.rhcloud.com/swag.js.html">swag&nbsp;<i
+							class="fa fa-shopping-cart"></i></a></li>
+					<li><a href="//ben-hildred.rhcloud.com/dates.js.html">dates&nbsp;<i
+							class="fa fa-calendar"></i></a></li>
 				</ul>
 			</div>
 			<!--/.nav-collapse -->
@@ -47,11 +54,10 @@
 					<a name="<$BlogItemNumber$>"></a>
 					<BlogItemTitle>
 					<h3 class="post-title">
-						<BlogItemUrl>
-						<a href="<$BlogItemUrl$>" title="external link"></BlogItemUrl>
+						<BlogItemUrl> <a href="<$BlogItemUrl$>"
+							title="external link"></BlogItemUrl>
 						<$BlogItemTitle$>
-						<BlogItemUrl>
-						</a></BlogItemUrl>
+						<BlogItemUrl> </a></BlogItemUrl>
 					</h3>
 					</BlogItemTitle>
 
@@ -62,9 +68,8 @@
 					<p class="post-footer">
 						<em>posted by <$BlogItemAuthorNickname$> at <a
 							href="<$BlogItemPermalinkUrl$>" title="permanent link"><$BlogItemDateTime$></a></em>
-						<MainOrArchivePage>
-						<BlogItemCommentsEnabled> <a
-							class="comment-link" href="<$BlogItemPermalinkURL$>#comments"><$BlogItemCommentCount$>
+						<MainOrArchivePage> <BlogItemCommentsEnabled>
+						<a class="comment-link" href="<$BlogItemPermalinkURL$>#comments"><$BlogItemCommentCount$>
 							comments</a> </BlogItemCommentsEnabled></MainOrArchivePage>
 						<$BlogItemControl$>
 					</p>
@@ -73,8 +78,8 @@
 				<!-- End .post --> <!-- Begin #comments --> <ItemPage>
 				<div id="comments">
 
-					<BlogItemCommentsEnabled>
-					<a name="comments"></a>
+					<BlogItemCommentsEnabled> <a
+						name="comments"></a>
 					<h4><$BlogItemCommentCount$> Comments:</h4>
 					<dl id="comments-block">
 						<BlogItemComments>
@@ -105,42 +110,36 @@
 		<!-- End #main -->
 		<!-- Begin #sidebar -->
 		<div id="sidebar" class="col-md-4">
-			<div id="sidebar2">
 
+			<h2 class="sidebar-title">Previous Posts</h2>
+			<ul id="recently">
+				<BloggerPreviousItems>
+				<li><a href="<$BlogItemPermalinkURL$>"><$BlogPreviousItemTitle$></a></li>
+				</BloggerPreviousItems>
+			</ul>
+			<MainOrArchivePage>
 
-				<!-- Begin #profile-container -->
+			<h2 class="sidebar-title">Archives</h2>
+			<ul class="archive-list">
+				<BloggerArchives>
+				<li><a href="<$BlogArchiveURL$>"><$BlogArchiveName$></a></li>
+				</BloggerArchives>
 
-				<img src=<$BlogOwnerPhotoUrl$>>
+			</ul>
+			</MainOrArchivePage>
 
-				<!-- End #profile -->
+			<p id="powered-by">
+				<a href="http://www.blogger.com"><img
+					src="http://buttons.blogger.com/bloggerbutton1.gif"
+					alt="Powered by Blogger" /></a>
+			</p>
 
-  
-  <h2 class="sidebar-title">Previous Posts</h2>
-    <ul id="recently">
-    <BloggerPreviousItems>
-        <li><a href="<$BlogItemPermalinkURL$>"><$BlogPreviousItemTitle$></a></li>
-     </BloggerPreviousItems>
-  </ul>
-    <MainOrArchivePage>
-
-  <h2 class="sidebar-title">Archives</h2>
-    <ul class="archive-list">
-   	  <BloggerArchives>
-    	<li><a href="<$BlogArchiveURL$>"><$BlogArchiveName$></a></li>
-	  </BloggerArchives>
-
-  </ul>
-  </MainOrArchivePage>
-
-      <p id="powered-by"><a href="http://www.blogger.com"><img src="http://buttons.blogger.com/bloggerbutton1.gif" alt="Powered by Blogger" /></a></p>
-  
-  <!--
+			<!--
   <p>This is a paragraph of text that could go in the sidebar.</p>
   -->
-  
 
 
-</div>
+
 		</div>
 		<!-- End #sidebar -->
 
@@ -152,7 +151,6 @@
 
 	<!-- Begin #footer -->
 	<div id="footer">
-		<hr />
 		<p>
 			<!--This is an optional footer. If you want text here, place it inside these tags, and remove this comment. -->
 			&nbsp;

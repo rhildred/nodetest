@@ -24,8 +24,13 @@
 	float: right;
 }
 
-body, #content {
+html, #content {
 	padding-top: 3em;
+}
+
+.date-header{
+	float:right;
+	font-size=1.2em;
 }
 
 .navbar .active,

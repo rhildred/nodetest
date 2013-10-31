@@ -11,35 +11,30 @@
 </head>
 <body>
 	<div class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container">
+		<div id="<%= locals.page %>" class="container">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse"
 					data-target=".navbar-collapse">
 					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand active" href="."> <span
+				<a class="navbar-brand" href="."> <span
 					class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;Ben Hildred
 				</a>
 			</div>
 			<div class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li><a href="mypick.js.html">workout</a></li>
-					<li><a href="mypick.js.html">recipes</a></li>
-					<li><a href="mypick.js.html">beats</a></li>
-					<li><a href="mypick.js.html">swag</a></li>
-					<li><a href="mypick.js.html">dates</a></li>
+					<li><a href="workout.js.html">workout</a></li>
+					<li><a href="#">recipes</a></li>
+					<li><a href="beats.js.html">beats</a></li>
+					<li><a href="swag.js.html">swag</a></li>
+					<li><a href="dates.js.html">dates</a></li>
 				</ul>
 			</div>
 			<!--/.nav-collapse -->
 		</div>
 	</div>
-	<div class="container">
-		<h1>Ben Hildred</h1>
-		<p>This is the new website of Ben Hildred</p>
-		<img src="http://i1.ytimg.com/vi/9RAFydV4bPM/mqdefault.jpg"
-			title="Ben Hildred" alt="Ben Hildred" />
-	</div>
+	<%- body %>
 </body>
 <script
 	src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>

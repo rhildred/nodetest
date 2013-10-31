@@ -1,3 +1,5 @@
+/*
+
 .navbar-nav 
 {
 	border-right: 1px solid #6F4D1A;
@@ -7,8 +9,37 @@
 {
 	border-left: 1px solid #6F4D1A;
 }
+*/
+.navbar-nav li:before,.navbar-nav:before {
+	content: "|";
+	display: inline;
+	float: left;
+	font-size: 200%;
+	padding-top: 8px;
+	color: #6F4D1A;
+	margin: -4px;
+}
 
+.navbar-nav:before {
+	float: right;
+}
 
 body {
 	padding-top: 3em;
+}
+
+.navbar .active,
+div#index a[href$="."],
+div#workout a[href$="workout.js.html"],
+div#beats a[href$="beats.js.html"],
+div#swag a[href$="swag.js.html"],
+div#dates a[href$="dates.js.html"]{
+	color: #BC7427;
+	font-size: 1.2em;
+	pointer-events: none;
+	cursor: default;
+}
+
+div#index a[href$="."]{
+	font-size:18px;
 }

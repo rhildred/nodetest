@@ -1,3 +1,4 @@
+//npm modules that also need to be in the package.json file
 var express = require('express');
 var ejs = require('./lib/ejs-locals');
 var fs = require('fs');
@@ -5,15 +6,21 @@ var url=require('url');
 var i18n = require('i18n-abide');
 var emailjs   = require("emailjs");
 
+//set ipaddress from openshift, to command line or to localhost:8080
 var ipaddr = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
 var port = process.env.OPENSHIFT_NODEJS_PORT || parseInt(process.argv.pop()) || 8080;
 
+//we use express to parse our http requests and to route in the namespace
 var app = express();
 app.configure(function() {
+	// parse requests
 	app.use(express.bodyParser());
+	// route in namespace
 	app.use(app.router);
 	try{
+		// find out what i18n directories we have and therefore what languages are supported
 		var aSupported = fs.readdirSync("i18n");
+		// en-US is alway supported
 		aSupported.push("en-US");
 		app.use(i18n.abide({
 		  supported_languages: aSupported,
@@ -26,6 +33,7 @@ app.configure(function() {
 	}
 });
 
+//route post requests for /emailjs to here
 app.post("/emailjs", function(req, res){
 	var oParams = null;
 	try{
@@ -67,13 +75,16 @@ app.post("/emailjs", function(req, res){
 	}
 });
 
+// route all other requests to here
 app.use(function(req, res) {
+	//serve out of public directory
 	var sUrl = "public" + req._parsedUrl.pathname;
+	// process a directory with no specific resource name
 	if(fs.existsSync(sUrl) && fs.statSync(sUrl).isDirectory())
 	{
 		if(sUrl.charAt(sUrl.length-1) != "/" )
 		{
-			// need to do redirect
+			// no slash on end so need to do redirect
 			res.writeHead(302, {
 				  'Location': req._parsedUrl.pathname + "/"
 				  //add other headers here...
@@ -81,6 +92,7 @@ app.use(function(req, res) {
 			res.end();
 			return;
 		}
+		// put the welcome file on
 		if (fs.existsSync(sUrl + "index.js.html")) {
 			sUrl += "index.js.html";
 		}
@@ -98,16 +110,18 @@ app.use(function(req, res) {
 			// then it is sent without parsing
 			res.sendfile(sUrl);
 		} else {
-			// then we want to parse this file as js.html with ejs
+			// set up internationalization for a .js.html resource
 			var slang_dir = "ltr";
 			try
 			{
+				// note that if we have a rtl language we need to set "ltr":"rtl" in messages.json (see ar for example)
 				slang_dir = req.gettext("ltr");
 			}
 			catch(e)
 			{
 				//ignore this exception since we already set lang_dir
 			}
+			// parse options
 			var options = {
 				settings : {
 					'view engine' : 'js.html'
@@ -122,6 +136,7 @@ app.use(function(req, res) {
 				lang_dir : slang_dir,
 				"__" : req.gettext
 			};
+			// then we want to parse this file as js.html with ejs
 			ejs(sUrl, options, function(err, html) {
 				if (err) {
 					console.log(err);
@@ -136,5 +151,6 @@ app.use(function(req, res) {
 	}
 });
 
+// start the server listening for requests
 app.listen(port, ipaddr);
 console.log('node.js running at port ' + port);

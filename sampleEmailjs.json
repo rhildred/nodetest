@@ -1,0 +1,9 @@
+{
+	"host":    "smtp.gmail.com", 
+	"user":    "<gmail user name>", 
+	"password": "<gmail password .... be careful not to commit this to a public repository>", 
+	"ssl":     true,
+	"to":		"<hard coded recipient>",
+	"success": "contactSuccess.js.html",
+	"failure": "contactFailure.js.html"
+}

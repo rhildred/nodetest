@@ -27,7 +27,8 @@
   "dependencies": {
     "express": "*",
     "marked": "*",
-    "i18n-abide": "*"
+    "i18n-abide": "*",
+    "emailjs": "*"
   },
   "devDependencies": {},
   "bundleDependencies": [],

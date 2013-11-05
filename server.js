@@ -3,6 +3,7 @@ var ejs = require('./lib/ejs-locals');
 var fs = require('fs');
 var url=require('url');
 var i18n = require('i18n-abide');
+var emailjs   = require("emailjs");
 
 var ipaddr = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
 var port = process.env.OPENSHIFT_NODEJS_PORT || parseInt(process.argv.pop()) || 8080;
@@ -25,7 +26,46 @@ app.configure(function() {
 	}
 });
 
+app.post("/emailjs", function(req, res){
+	var oParams = null;
+	try{
+		// get connection params from json file and connect to server (probably gmail). Be careful that you don't commit these to a public repository!
+		oParams = require("./emailjs.json");
+		var server  = emailjs.server.connect(oParams);
+		
+		// make message, primarily from form variables, text, from and subject. These need to be coded exactly like this on the form to work
+		var oMessage = {
+				text:    req.param("text"), 
+				from:    req.param("from"), 
+				to:      oParams.to,
+				subject: req.param("subject")
+		};
 
+		// send the message and get a callback with an error or details of the message that was sent
+		server.send(oMessage, function(err, message) {
+			if(err){
+				throw err;
+			}
+			// need to do redirect
+			res.writeHead(302, {
+				'Location': "../" + oParams.success
+				//add other headers here...
+			});
+			res.end();
+			return;
+		});
+
+	} catch(e) {
+		console.log(e);
+		// need to do redirect
+		res.writeHead(302, {
+			'Location': "../" + oParams.failure
+			//add other headers here...
+		});
+		res.end();
+		return;
+	}
+});
 
 app.use(function(req, res) {
 	var sUrl = "public" + req._parsedUrl.pathname;

@@ -4,15 +4,15 @@
 	<form action="emailjs/" method="post">
 	<p>
 	<label for="from">from:</label><br />
-	<input type="text" name="from" placeholder="email where Ben can get back to you" />
+	<input type="email" name="from" placeholder="email where Ben can get back to you" required="required" />
 	</p> 
 	<p>
 	<label for="subject">subject:</label><br />
-	<input type="text" name="subject" placeholder="subject of your inquiry" />
+	<input type="text" name="subject" placeholder="subject of your inquiry" required="required" />
 	</p> 
 	<p>
 	<label for="text">message:</label><br />
-	<textarea name="text" placeholder="your message for Ben"></textarea>
+	<textarea name="text" placeholder="your message for Ben" required="required"></textarea>
 	</p>
 	<button class="btn btn-primary" type="submit" name="submit">Contact Ben</button> 
 	</form>

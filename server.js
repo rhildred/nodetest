@@ -45,6 +45,7 @@ app.post("/emailjs", function(req, res){
 		var oMessage = {
 				text:    req.param("text"), 
 				from:    req.param("from"), 
+				"Reply-To":req.param("from"),
 				to:      oParams.to,
 				subject: req.param("subject")
 		};

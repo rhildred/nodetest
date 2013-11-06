@@ -1,19 +1,21 @@
 <% layout('_layout') %>
 <div class="container">
 	<h1>Contact Ben</h1>
+	
 	<form action="emailjs/" method="post">
 	<p>
-	<label for="from">from:</label><br />
-	<input type="text" name="from" placeholder="email where Ben can get back to you" />
-	</p> 
-	<p>
-	<label for="subject">subject:</label><br />
-	<input type="text" name="subject" placeholder="subject of your inquiry" />
-	</p> 
-	<p>
-	<label for="text">message:</label><br />
-	<textarea name="text" placeholder="your message for Ben"></textarea>
+		<label for="from">from:</label><br />
+		<input type="email" name="from" placeholder="email for Ben to contact" />
 	</p>
-	<button class="btn btn-primary" type="submit" name="submit">Contact Ben</button> 
+	<!-- p>
+		<label for="subject">subject:</label><br />
+		<input type="text" name="subject" placeholder="contact subject" required="required" />
+	</p> -->
+	<input type="hidden" name="subject" value="inquiry from Ben's site" />
+	<p>
+		<label for="text">Message:</label><br />
+		<textarea name="text" placeholder="message for Ben" required="required"></textarea>
+	</p>
+	<button type="submit" class="btn btn-primary" name="submit">Contact Ben</button>
 	</form>
 </div>

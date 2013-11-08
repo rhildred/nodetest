@@ -9,7 +9,6 @@ var walk = function(dir) {
 	list.forEach(function(sFile) {
 		file = dir + '/' + sFile;
 		var stat = fs.statSync(file);
-		debugger;
 		if (stat && stat.isDirectory())
 		{
 			// then we have a subdirectory

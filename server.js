@@ -26,7 +26,8 @@ app.configure(function() {
 		  supported_languages: aSupported,
 		  default_lang: 'en-US',
 		  translation_directory: 'i18n',
-		  translation_type: 'key-value-json'
+		  translation_type: 'key-value-json',
+		  locale_on_url: true
 		}));
 	}catch(e){
 		console.log("no i18n support " + e.toString());

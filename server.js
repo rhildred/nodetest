@@ -56,23 +56,31 @@ app.post("/emailjs", function(req, res){
 			if(err){
 				throw err;
 			}
-			// need to do redirect
-			res.writeHead(302, {
-				'Location': "../" + oParams.success
-				//add other headers here...
-			});
-			res.end();
+			if(typeof oParams.success != 'undefined'){
+				// need to do redirect
+				res.writeHead(302, {
+					'Location': "../" + oParams.success
+					//add other headers here...
+				});
+				res.end();				
+			}else{
+				res.end("<div class=\"alert alert-success\"><strong>Thank-you!</strong> for your inquiry.</div>")
+			}
 			return;
 		});
 
 	} catch(e) {
 		console.log(e);
-		// need to do redirect
-		res.writeHead(302, {
-			'Location': "../" + oParams.failure
-			//add other headers here...
-		});
-		res.end();
+		if(typeof oParams.failure != 'undefined'){
+			// need to do redirect
+			res.writeHead(302, {
+				'Location': "../" + oParams.failure
+				//add other headers here...
+			});
+			res.end();				
+		}else{
+			res.end("<div class=\"alert alert-danger\"><strong>Oops!</strong> your message was not sent. Please contact in another manner</div>")
+		}
 		return;
 	}
 });

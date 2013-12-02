@@ -23,7 +23,7 @@ var walk = function(dir) {
 			nDay = nDay < 10 ? '0' + nDay : nDay;
 			nPages++;
 			// write an entry for the file
-			stream.write("<url><loc>http://syndicateme.net/" + sFile
+			stream.write("<url><loc>http://ben-hildred.rhcloud.com" + dir.replace("public", '') + '/' + sFile
 					+ "</loc><lastmod>" + dDate.getFullYear() + '-' + nMonth
 					+ '-' + nDay + "</lastmod></url>\n");
 		}

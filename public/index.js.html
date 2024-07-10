@@ -1,21 +1,12 @@
-<% 
-locals.title="Ben Hildred";
-locals.keywords="acid jazz workout beats hip-hop recipes";
-locals.description="this is the website of rennaisance man Ben Hildred";
-layout('_layout'); 
-%>
-<div class="container">
-	<h1>Ben Hildred</h1>
-	<p>This is the new website of Ben Hildred</p>
-	<p>
-		<a href="http://www.youtube.com/embed/L9szn1QQfas?autoplay=1" class="use_fancybox iframe">Youtube (iframe)</a>
-	</p>
-	<img src="http://i1.ytimg.com/vi/9RAFydV4bPM/mqdefault.jpg"
-		title="Ben Hildred" alt="Ben Hildred" />
-		
-	<p>
-	<a class="use_prettyPhoto" href="//www.youtube.com/watch?v=B0ky-VMi9fI">
-Pretty Photo
-</a>
-</p>
-</div>
+<!DOCTYPE html>
+<html lang="<%= lang %>" dir="<%= lang_dir %>">
+<head>
+<meta charset="utf-8" />
+<title><%= gettext("Hello") %></title>
+</head>
+<body>
+	<h1><%= gettext("Hello") %></h1>
+	<p><%= __("Hello from my Grandson") %></p>
+	<img src="images/DSCF0117.jpg" />
+</body>
+</html>

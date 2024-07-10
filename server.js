@@ -2,9 +2,7 @@
 var express = require('express');
 var ejs = require('./lib/ejs-locals');
 var fs = require('fs');
-var url=require('url');
 var i18n = require('i18n-abide');
-var emailjs   = require("emailjs");
 
 //set ipaddress from openshift, to command line or to localhost:8080
 var ipaddr = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
@@ -12,78 +10,21 @@ var port = process.env.OPENSHIFT_NODEJS_PORT || parseInt(process.argv.pop()) || 
 
 //we use express to parse our http requests and to route in the namespace
 var app = express();
-app.configure(function() {
-	// parse requests
-	app.use(express.bodyParser());
-	// route in namespace
-	app.use(app.router);
-	try{
-		// find out what i18n directories we have and therefore what languages are supported
-		var aSupported = fs.readdirSync("i18n");
-		// en-US is alway supported
-		aSupported.push("en-US");
-		app.use(i18n.abide({
-		  supported_languages: aSupported,
-		  default_lang: 'en-US',
-		  translation_directory: 'i18n',
-		  translation_type: 'key-value-json',
-		  locale_on_url: true
-		}));
-	}catch(e){
-		console.log("no i18n support " + e.toString());
-	}
-});
-
-//route post requests for /emailjs to here
-app.post("/emailjs", function(req, res){
-	var oParams = null;
-	try{
-		// get connection params from json file and connect to server (probably gmail). Be careful that you don't commit these to a public repository!
-		oParams = require("./emailjs.json");
-		var server  = emailjs.server.connect(oParams);
-		
-		// make message, primarily from form variables, text, from and subject. These need to be coded exactly like this on the form to work
-		var oMessage = {
-				text:    req.param("text"), 
-				from:    req.param("from"), 
-				"Reply-To":req.param("from"),
-				to:      oParams.to,
-				subject: req.param("subject")
-		};
-
-		// send the message and get a callback with an error or details of the message that was sent
-		server.send(oMessage, function(err, message) {
-			if(err){
-				throw err;
-			}
-			if(typeof oParams.success != 'undefined'){
-				// need to do redirect
-				res.writeHead(302, {
-					'Location': "../" + oParams.success
-					//add other headers here...
-				});
-				res.end();				
-			}else{
-				res.end("<div class=\"alert alert-success\"><strong>Thank-you!</strong> for your inquiry.</div>")
-			}
-			return;
-		});
-
-	} catch(e) {
-		console.log(e);
-		if(typeof oParams.failure != 'undefined'){
-			// need to do redirect
-			res.writeHead(302, {
-				'Location': "../" + oParams.failure
-				//add other headers here...
-			});
-			res.end();				
-		}else{
-			res.end("<div class=\"alert alert-danger\"><strong>Oops!</strong> your message was not sent. Please contact in another manner</div>")
-		}
-		return;
-	}
-});
+try{
+	// find out what i18n directories we have and therefore what languages are supported
+	var aSupported = fs.readdirSync("i18n");
+	// en-US is alway supported
+	aSupported.push("en-US");
+	app.use(i18n.abide({
+		supported_languages: aSupported,
+		default_lang: 'en-US',
+		translation_directory: 'i18n',
+		translation_type: 'key-value-json',
+		locale_on_url: true
+	}));
+}catch(e){
+	console.log("no i18n support " + e.toString());
+}
 
 // route all other requests to here
 app.use(function(req, res) {
@@ -118,7 +59,7 @@ app.use(function(req, res) {
 		// serve file
 		if (-1 == sUrl.search("js.html")) {
 			// then it is sent without parsing
-			res.sendfile(sUrl);
+			res.sendFile(`${__dirname}/${sUrl}`);
 		} else {
 			// set up internationalization for a .js.html resource
 			var slang_dir = "ltr";
@@ -157,7 +98,7 @@ app.use(function(req, res) {
 			});
 		}
 	} else {
-		res.send(404, 'File not Found.');
+		res.status(404).send('File not Found.');
 	}
 });
 

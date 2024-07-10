@@ -26,7 +26,7 @@ try{
 	console.log("no i18n support " + e.toString());
 }
 
-// route all other requests to here
+// route all requests to here
 app.use(function(req, res) {
 	//serve out of public directory
 	var sUrl = "public" + req._parsedUrl.pathname;

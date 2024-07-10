@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="<%= lang %>" dir="<%= lang_dir %>">
-<head>
-<meta charset="utf-8" />
-<title><%= gettext("Hello") %></title>
-</head>
-<body>
-	<h1><%= gettext("Hello") %></h1>
-	<p><%= __("Hello from my Grandson") %></p>
-	<img src="images/DSCF0117.jpg" />
-</body>
-</html>
+<% 
+locals.title=gettext("Hello");
+locals.description=gettext("ejs site with layout and i8n");
+layout('_layout'); 
+%>
+<h1><%= gettext("Hello") %></h1>
+<p><%= __("Hello from my Grandson") %></p>
+<img src="images/DSCF0117.jpg" />

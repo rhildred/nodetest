@@ -1,5 +1,6 @@
 {
 	"ltr" : "rtl",
 	"Hello":"مرحبا",
-	"Hello from my Grandson":"مرحبا من حفيدي"
+	"Hello from my Grandson":"مرحبا من حفيدي",
+	"ejs site with layout and i8n":"موقع EJS مع التخطيط وi8n"
 }

@@ -1,4 +1,5 @@
 {
 	"Hello":"Bonjour",
-	"Hello from my Grandson":"Bonjour &agrave; mon petit-fils"
+	"Hello from my Grandson":"Bonjour &agrave; mon petit-fils",
+	"ejs site with layout and i8n":"site ejs avec mise en page et i8n"
 }
